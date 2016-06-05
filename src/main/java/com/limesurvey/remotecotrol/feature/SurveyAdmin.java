@@ -1,6 +1,10 @@
 
 package com.limesurvey.remotecotrol.feature;
 
+import com.limesurvey.remotecotrol.domain.SuerveySummaryEntity;
+import com.limesurvey.remotecotrol.domain.SurveyEntity;
+import com.limesurvey.remotecotrol.domain.SurveyGroupEntity;
+import com.limesurvey.remotecotrol.domain.UserEntity;
 import com.limesurvey.remotecotrol.internel.JsonRPC;
 import com.limesurvey.remotecotrol.options.*;
 import retrofit2.http.POST;
@@ -307,7 +311,7 @@ public interface SurveyAdmin {
      */
     @POST("remotecontrol")
     @JsonRPC("get_summary")
-    public Observable<String> getSummary(
+    public Observable<SuerveySummaryEntity> getSummary(
             @retrofit2.http.Body
             GetSummaryOptions options);
 
@@ -319,7 +323,7 @@ public interface SurveyAdmin {
      */
     @POST("remotecontrol")
     @JsonRPC("get_survey_properties")
-    public Observable<String> getSurveyProperties(
+    public Observable<Object> getSurveyProperties(
             @retrofit2.http.Body
             GetSurveyPropertiesOptions options);
 
@@ -381,7 +385,7 @@ public interface SurveyAdmin {
      */
     @POST("remotecontrol")
     @JsonRPC("list_groups")
-    public Observable<Object> listGroups(
+    public Observable<List<SurveyGroupEntity>> listGroups(
             @retrofit2.http.Body
             ListGroupsOptions options);
 
@@ -424,7 +428,7 @@ public interface SurveyAdmin {
      */
     @POST("remotecontrol")
     @JsonRPC("list_surveys")
-    public Observable<List<Object>> listSurveys(
+    public Observable<List<SurveyEntity>> listSurveys(
             @retrofit2.http.Body
             ListSurveysOptions options);
 
@@ -437,7 +441,7 @@ public interface SurveyAdmin {
      */
     @POST("remotecontrol")
     @JsonRPC("list_users")
-    public Observable<Object> listUsers(
+    public Observable<List<UserEntity>> listUsers(
             @retrofit2.http.Body
             ListUsersOptions options);
 

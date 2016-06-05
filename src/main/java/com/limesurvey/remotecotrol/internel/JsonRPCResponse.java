@@ -5,6 +5,34 @@ class JsonRPCResponse<T> {
     T result;
     Object error;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public JsonRPCResponse setId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public T getResult() {
+        return result;
+    }
+
+    public JsonRPCResponse setResult(T result) {
+        this.result = result;
+        return this;
+    }
+
+    public Object getError() {
+        return error;
+    }
+
+    public JsonRPCResponse setError(Object error) {
+        this.error = error;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

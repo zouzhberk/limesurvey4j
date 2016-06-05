@@ -11,23 +11,18 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
-public class JsonRPCConverterFactory extends Converter.Factory
-{
-    private JsonRPCConverterFactory()
-    {
+public class JsonRPCConverterFactory extends Converter.Factory {
+    private JsonRPCConverterFactory() {
         // Private constructor.
     }
 
-    public static JsonRPCConverterFactory create()
-    {
+    public static JsonRPCConverterFactory create() {
         return new JsonRPCConverterFactory();
     }
 
     @Override
-    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit)
-    {
-        if (!Utils.isAnnotationPresent(annotations, JsonRPC.class))
-        {
+    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
+        if (!Utils.isAnnotationPresent(annotations, JsonRPC.class)) {
             return null;
         }
 
@@ -42,11 +37,9 @@ public class JsonRPCConverterFactory extends Converter.Factory
 
     @Override
     public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] annotations, Annotation[]
-            methodAnnotations, Retrofit retrofit)
-    {
+            methodAnnotations, Retrofit retrofit) {
         JsonRPC methodAnnotation = Utils.findAnnotation(methodAnnotations, JsonRPC.class);
-        if (methodAnnotation == null)
-        {
+        if (methodAnnotation == null) {
             return null;
         }
         String method = methodAnnotation.value();
@@ -57,41 +50,51 @@ public class JsonRPCConverterFactory extends Converter.Factory
         return new JsonRPCRequestBodyConverter(method, delegate);
     }
 
-    static class JsonRPCResponseBodyConverter<T> implements Converter<ResponseBody, T>
-    {
+    static class JsonRPCResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         final Converter<ResponseBody, JsonRPCResponse<T>> delegate;
 
-        JsonRPCResponseBodyConverter(Converter<ResponseBody, JsonRPCResponse<T>> delegate)
-        {
+        JsonRPCResponseBodyConverter(Converter<ResponseBody, JsonRPCResponse<T>> delegate) {
             this.delegate = delegate;
         }
 
         @Override
-        public T convert(ResponseBody responseBody) throws IOException
-        {
+        public T convert(ResponseBody responseBody) throws IOException {
+            Gson gson = new Gson();
+//          System.out.println(responseBody.string());
 
-            JsonRPCResponse<T> response = delegate.convert(responseBody);
-            return response.result;
+            byte[] a = responseBody.bytes();
+
+            try {
+                JsonRPCResponse<T> response = delegate.convert(ResponseBody.create(responseBody.contentType(), a));
+                return response.result;
+            } catch (Exception e) {
+                ErrorRPCResponse response = gson.fromJson(new String(a), ErrorRPCResponse.class);
+
+                throw new IOException(response.getResult().getStatus());
+            } finally {
+                responseBody.close();
+            }
+
         }
     }
 
-    static class JsonRPCRequestBodyConverter<T> implements Converter<T, RequestBody>
-    {
+    static class JsonRPCRequestBodyConverter<T> implements Converter<T, RequestBody> {
         private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         final String method;
         final Converter<JsonRPCRequest, RequestBody> delegate;
 
-        JsonRPCRequestBodyConverter(String method, Converter<JsonRPCRequest, RequestBody> delegate)
-        {
+        JsonRPCRequestBodyConverter(String method, Converter<JsonRPCRequest, RequestBody> delegate) {
             this.method = method;
             this.delegate = delegate;
         }
 
         @Override
-        public RequestBody convert(T value) throws IOException
-        {
+        public RequestBody convert(T value) throws IOException {
+            Gson gson = new Gson();
+            System.out.println(gson.toJson(value));
             JsonRPCRequest request = JsonRPCRequest.create(method, value);
-            return RequestBody.create(JSON, new Gson().toJson(request));
+
+            return RequestBody.create(JSON, gson.toJson(request));
         }
     }
 }

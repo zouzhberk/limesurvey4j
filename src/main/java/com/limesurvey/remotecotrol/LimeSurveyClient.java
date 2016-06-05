@@ -1,5 +1,7 @@
 package com.limesurvey.remotecotrol;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.limesurvey.remotecotrol.feature.SessionService;
 import com.limesurvey.remotecotrol.internel.JsonRPCConverterFactory;
 import com.limesurvey.remotecotrol.options.GetSessionKeyOptions;
@@ -20,8 +22,9 @@ public class LimeSurveyClient {
     private final Retrofit retrofit;
 
     private LimeSurveyClient(String baseUrl) {
+        Gson gson = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         retrofit = new Retrofit.Builder().addConverterFactory(JsonRPCConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(baseUrl)
                 .build();
