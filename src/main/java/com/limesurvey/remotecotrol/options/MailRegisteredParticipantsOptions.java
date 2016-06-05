@@ -14,7 +14,7 @@ public class MailRegisteredParticipantsOptions
 
     private String sSessionKey;
     private Integer iSurveyID;
-    private String overrideAllConditions;
+    private Object overrideAllConditions;
 
     public void setSessionKey(String sessionKey) {
         sSessionKey = sessionKey;
@@ -32,11 +32,11 @@ public class MailRegisteredParticipantsOptions
         return iSurveyID;
     }
 
-    public void setOverrideAllConditions(String overrideAllConditions) {
+    public void setOverrideAllConditions(Object overrideAllConditions) {
         overrideAllConditions = overrideAllConditions;
     }
 
-    public String getOverrideAllConditions() {
+    public Object getOverrideAllConditions() {
         return overrideAllConditions;
     }
 

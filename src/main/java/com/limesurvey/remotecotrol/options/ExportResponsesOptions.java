@@ -21,7 +21,7 @@ public class ExportResponsesOptions
     private String sResponseType;
     private String iFromResponseID;
     private String iToResponseID;
-    private String aFields;
+    private Object aFields;
 
     public void setSessionKey(String sessionKey) {
         sSessionKey = sessionKey;
@@ -95,11 +95,11 @@ public class ExportResponsesOptions
         return iToResponseID;
     }
 
-    public void setFields(String fields) {
+    public void setFields(Object fields) {
         aFields = fields;
     }
 
-    public String getFields() {
+    public Object getFields() {
         return aFields;
     }
 

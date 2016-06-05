@@ -20,7 +20,7 @@ public class ExportResponsesByTokenOptions
     private String sCompletionStatus;
     private String sHeadingType;
     private String sResponseType;
-    private String aFields;
+    private Object aFields;
 
     public void setSessionKey(String sessionKey) {
         sSessionKey = sessionKey;
@@ -86,11 +86,11 @@ public class ExportResponsesByTokenOptions
         return sResponseType;
     }
 
-    public void setFields(String fields) {
+    public void setFields(Object fields) {
         aFields = fields;
     }
 
-    public String getFields() {
+    public Object getFields() {
         return aFields;
     }
 

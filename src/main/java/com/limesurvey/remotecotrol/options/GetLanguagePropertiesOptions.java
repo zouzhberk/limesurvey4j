@@ -14,7 +14,7 @@ public class GetLanguagePropertiesOptions
 
     private String sSessionKey;
     private Integer iSurveyID;
-    private String aSurveyLocaleSettings;
+    private Object aSurveyLocaleSettings;
     private String sLang;
 
     public void setSessionKey(String sessionKey) {
@@ -33,11 +33,11 @@ public class GetLanguagePropertiesOptions
         return iSurveyID;
     }
 
-    public void setSurveyLocaleSettings(String surveyLocaleSettings) {
+    public void setSurveyLocaleSettings(Object surveyLocaleSettings) {
         aSurveyLocaleSettings = surveyLocaleSettings;
     }
 
-    public String getSurveyLocaleSettings() {
+    public Object getSurveyLocaleSettings() {
         return aSurveyLocaleSettings;
     }
 

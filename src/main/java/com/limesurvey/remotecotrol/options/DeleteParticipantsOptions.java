@@ -14,7 +14,7 @@ public class DeleteParticipantsOptions
 
     private String sSessionKey;
     private Integer iSurveyID;
-    private String aTokenIDs;
+    private Object aTokenIDs;
 
     public void setSessionKey(String sessionKey) {
         sSessionKey = sessionKey;
@@ -32,11 +32,11 @@ public class DeleteParticipantsOptions
         return iSurveyID;
     }
 
-    public void setTokenIDs(String tokenIDs) {
+    public void setTokenIDs(Object tokenIDs) {
         aTokenIDs = tokenIDs;
     }
 
-    public String getTokenIDs() {
+    public Object getTokenIDs() {
         return aTokenIDs;
     }
 

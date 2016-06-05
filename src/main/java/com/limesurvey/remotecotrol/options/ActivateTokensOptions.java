@@ -14,7 +14,7 @@ public class ActivateTokensOptions
 
     private String sSessionKey;
     private String iSurveyID;
-    private String aAttributeFields;
+    private Object aAttributeFields;
 
     public void setSessionKey(String sessionKey) {
         sSessionKey = sessionKey;
@@ -32,11 +32,11 @@ public class ActivateTokensOptions
         return iSurveyID;
     }
 
-    public void setAttributeFields(String attributeFields) {
+    public void setAttributeFields(Object attributeFields) {
         aAttributeFields = attributeFields;
     }
 
-    public String getAttributeFields() {
+    public Object getAttributeFields() {
         return aAttributeFields;
     }
 

@@ -14,7 +14,7 @@ public class GetQuestionPropertiesOptions
 
     private String sSessionKey;
     private Integer iQuestionID;
-    private String aQuestionSettings;
+    private Object aQuestionSettings;
     private String sLanguage;
 
     public void setSessionKey(String sessionKey) {
@@ -33,11 +33,11 @@ public class GetQuestionPropertiesOptions
         return iQuestionID;
     }
 
-    public void setQuestionSettings(String questionSettings) {
+    public void setQuestionSettings(Object questionSettings) {
         aQuestionSettings = questionSettings;
     }
 
-    public String getQuestionSettings() {
+    public Object getQuestionSettings() {
         return aQuestionSettings;
     }
 

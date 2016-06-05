@@ -15,7 +15,7 @@ public class GetParticipantPropertiesOptions
     private String sSessionKey;
     private Integer iSurveyID;
     private Integer iTokenID;
-    private String aTokenProperties;
+    private Object aTokenProperties;
 
     public void setSessionKey(String sessionKey) {
         sSessionKey = sessionKey;
@@ -41,11 +41,11 @@ public class GetParticipantPropertiesOptions
         return iTokenID;
     }
 
-    public void setTokenProperties(String tokenProperties) {
+    public void setTokenProperties(Object tokenProperties) {
         aTokenProperties = tokenProperties;
     }
 
-    public String getTokenProperties() {
+    public Object getTokenProperties() {
         return aTokenProperties;
     }
 

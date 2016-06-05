@@ -4,6 +4,7 @@ import com.google.common.base.CaseFormat;
 import com.limesurvey.remotecotrol.internel.JsonRPC;
 import com.limesurvey.remotecotrol.options.GetSessionKeyOptions;
 import com.sun.codemodel.*;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -78,6 +79,7 @@ public class InterfaceGen {
 
             JBlock setbody = setMethod.body();
 
+
             setbody.assign(field, setParam);
 
 
@@ -111,7 +113,7 @@ public class InterfaceGen {
         }
         switch (name) {
             case "array":
-                return String.class;
+                return Object.class;
             case "int":
                 return Integer.class;
             case "boolean":
@@ -131,8 +133,9 @@ public class InterfaceGen {
 
         String methodName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, apiInfo.getFunctionName());
         JMethod method = clazz.method(JMod.PUBLIC, returnClass, methodName);
-        method.param(options, "options");
+        JVar param1 = method.param(options, "options");
 
+        param1.annotate(Body.class);
         JDocComment javadoc = method.javadoc();
 
 

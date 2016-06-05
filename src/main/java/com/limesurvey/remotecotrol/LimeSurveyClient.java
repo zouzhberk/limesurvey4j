@@ -19,7 +19,7 @@ public class LimeSurveyClient {
     private static final String WEIXIN_API_SERVER_URL = "http://localhost/index.php/admin/";
     private final Retrofit retrofit;
 
-    public LimeSurveyClient(String baseUrl) {
+    private LimeSurveyClient(String baseUrl) {
         retrofit = new Retrofit.Builder().addConverterFactory(JsonRPCConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

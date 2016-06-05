@@ -14,7 +14,7 @@ public class GetGroupPropertiesOptions
 
     private String sSessionKey;
     private Integer iGroupID;
-    private String aGroupSettings;
+    private Object aGroupSettings;
 
     public void setSessionKey(String sessionKey) {
         sSessionKey = sessionKey;
@@ -32,11 +32,11 @@ public class GetGroupPropertiesOptions
         return iGroupID;
     }
 
-    public void setGroupSettings(String groupSettings) {
+    public void setGroupSettings(Object groupSettings) {
         aGroupSettings = groupSettings;
     }
 
-    public String getGroupSettings() {
+    public Object getGroupSettings() {
         return aGroupSettings;
     }
 

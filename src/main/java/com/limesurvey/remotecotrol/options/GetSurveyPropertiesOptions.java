@@ -14,7 +14,7 @@ public class GetSurveyPropertiesOptions
 
     private String sSessionKey;
     private Integer iSurveyID;
-    private String aSurveySettings;
+    private Object aSurveySettings;
 
     public void setSessionKey(String sessionKey) {
         sSessionKey = sessionKey;
@@ -32,11 +32,11 @@ public class GetSurveyPropertiesOptions
         return iSurveyID;
     }
 
-    public void setSurveySettings(String surveySettings) {
+    public void setSurveySettings(Object surveySettings) {
         aSurveySettings = surveySettings;
     }
 
-    public String getSurveySettings() {
+    public Object getSurveySettings() {
         return aSurveySettings;
     }
 

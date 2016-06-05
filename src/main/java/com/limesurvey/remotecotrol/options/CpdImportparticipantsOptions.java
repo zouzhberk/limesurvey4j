@@ -13,7 +13,7 @@ public class CpdImportparticipantsOptions
 {
 
     private Integer sSessionKey;
-    private String aParticipants;
+    private Object aParticipants;
 
     public void setSessionKey(Integer sessionKey) {
         sSessionKey = sessionKey;
@@ -23,11 +23,11 @@ public class CpdImportparticipantsOptions
         return sSessionKey;
     }
 
-    public void setParticipants(String participants) {
+    public void setParticipants(Object participants) {
         aParticipants = participants;
     }
 
-    public String getParticipants() {
+    public Object getParticipants() {
         return aParticipants;
     }
 
