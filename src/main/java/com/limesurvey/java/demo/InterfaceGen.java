@@ -1,8 +1,8 @@
 package com.limesurvey.java.demo;
 
 import com.google.common.base.CaseFormat;
-import com.limesurvey.remotecotrol.internel.JsonRPC;
-import com.limesurvey.remotecotrol.options.GetSessionKeyOptions;
+import com.limesurvey.remotecontrol.internel.JsonRPC;
+import com.limesurvey.remotecontrol.options.GetSessionKeyOptions;
 import com.sun.codemodel.*;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -27,7 +27,7 @@ public class InterfaceGen {
         //  new InterfaceGen().generate(Paths.get("/tmp/gen"));
 
         JCodeModel cm = new JCodeModel();
-        JPackage pack = cm._package("com.limesurvey.remotecotrol.feature");
+        JPackage pack = cm._package("com.limesurvey.remotecontrol.feature");
 
         JDefinedClass clazz = pack._interface("SurveyAdmin");
         JDocComment clazzdoc = clazz.javadoc();
@@ -35,7 +35,7 @@ public class InterfaceGen {
 
         ob.toBlocking().forEach((info) -> {
             try {
-                JDefinedClass options = buildOptions(info.getParams(), info.getFunctionName(), "com.limesurvey.remotecotrol.options");
+                JDefinedClass options = buildOptions(info.getParams(), info.getFunctionName(), "com.limesurvey.remotecontrol.options");
                 buildInterface(cm, clazz, info, options);
 
             } catch (Exception e) {
